@@ -192,7 +192,16 @@ public class GarageApp {
     // -------------------------------------------------------------------------------------
     // EFFECTS: Show a list of all cars in the collection
     public void viewCars() {
-        // TODO
+        ArrayList<Car> cars = myCollection.getCars();
+        if (cars.size() == 0) {
+            System.out.println("There is no car in your collection!");
+        } else {
+            System.out.println("You have:");
+            for (Car c : cars) {
+                System.out.println(c.getName() + " which is a " + c.getType());
+            }
+        }
+        buildCollection();
     }
 
     // EFFECTS: Show a list of all garages in the collection
