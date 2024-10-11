@@ -206,14 +206,76 @@ public class GarageApp {
 
     // EFFECTS: Show a list of all garages in the collection
     private void viewGarageList() {
-        // TODO
+        ArrayList<Garage> garages = myCollection.getSavedGarages();
+        if (garages.size() == 0) {
+            System.out.println("There is no garage in your collection!");
+        } else {
+            System.out.println("Your garages are:");
+            for (Garage g : garages) {
+                System.out.println(g.getName());
+            }
+        }
+
+        System.out.println("Do you want to view your garage?");
+        System.out.println("y -Yes");
+        System.out.println("n - No");
+        input = scan.next();
+
+        switch (input) {
+            case "y":
+                garageViewer();
+                break;
+
+            case "n":
+                System.out.println("Press any key to exit");
+                break;
+        }
+        buildCollection();
     }
+    // -------------------------------------------------------------------------------------
+
+    // EFFECTS: Show the list of cars in the selected garage from the saved garages
+    private void garageViewer() {
+        printDivider();
+        System.out.println("Which garage you want to view?");
+        String garageName = scan.next();
+        garages = myCollection.getSavedGarages();
+
+        showCarsInGarage(garages, garageName);
+    }
+
+    // EFFECTS: Method to show cars in the selected garage
+    private void showCarsInGarage(ArrayList<Garage> garages, String garageName) {
+        Garage garage = garageFinder(garages, garageName);
+        if (garage != null) {
+            System.out.println("Cars in the garage '" + garageName + "':");
+            for (Car car : garage.getCars()) {
+                System.out.println(car.getName());
+            }
+        } else {
+            System.out.println("Garage with name '" + garageName + "' not found.");
+        }
+
+        System.out.println("Press any key to exit");
+    }
+
+    // EFFECTS: Find the garage with the name, if can't find just return null
+    private Garage garageFinder(ArrayList<Garage> garages, String name) {
+        for (Garage garage : garages) {
+            if (garage.getName().equals(name)) {
+                return garage;
+            }
+        }
+        return null;
+    }
+    
+    // -------------------------------------------------------------------------------------
 
     // EFFECTS: Generate a new garage by adding cars into it
     private void smartGenerator() {
         // TODO
     }
-    // -------------------------------------------------------------------------------------
+    ≈
 
     // EFFECTS: prints out a line of dashes to act as a divider
     private void printDivider() {
