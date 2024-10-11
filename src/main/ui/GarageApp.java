@@ -268,14 +268,65 @@ public class GarageApp {
         }
         return null;
     }
-    
+
     // -------------------------------------------------------------------------------------
 
     // EFFECTS: Generate a new garage by adding cars into it
     private void smartGenerator() {
         // TODO
     }
-    ≈
+    
+
+
+
+
+
+    // -------------------------------------------------------------------------------------
+
+    /*
+     * EFFECTS: Tests whether the given object of type T satisfies
+     *          a specific condition.
+     * return true if the object satisfies the condition; false otherwise
+     */
+    interface Condition<T> {
+        boolean test(T t);
+    }
+
+    // EFFECTS: Universal filtering method: can be filtered according to any
+    // conditions
+    // MODIFIES: result
+    public static <T> ArrayList<T> filterByCondition(ArrayList<T> list, Condition<T> condition) {
+        ArrayList<T> result = new ArrayList<>();
+        for (T item : list) {
+            if (condition.test(item)) {
+                result.add(item);
+            }
+        }
+        return result;
+    }
+
+    // EFFECTS: Filter a list of cars by given boundaries by price
+    // REQUIRES: upper >= lower
+    private ArrayList<Car> filterByPriceRange(ArrayList<Car> cars, int lower, int upper) {
+        return filterByCondition(cars, new Condition<Car>() {
+            @Override
+            public boolean test(Car car) {
+                return car.getPrice() >= lower && car.getPrice() <= upper;
+            }
+        });
+    }
+
+    // EFFECTS: Filter a list of cars by given boundaries by year
+    // REQUIRES: upper >= lower
+    private ArrayList<Car> filterByYearRange(ArrayList<Car> cars, int lower, int upper) {
+        return filterByCondition(cars, new Condition<Car>() {
+            @Override
+            public boolean test(Car car) {
+                return car.getYear() >= lower && car.getYear() <= upper;
+            }
+        });
+    }
+
 
     // EFFECTS: prints out a line of dashes to act as a divider
     private void printDivider() {
