@@ -122,7 +122,71 @@ public class GarageApp {
 
     // EFFECTS: remove one of the cars or one of the garages in the collection
     private void removeCollection() {
-        // TODO
+        System.out.println("Do you want to remove a car or a garage?");
+        System.out.println("c - car (by Id)");
+        System.out.println("g - garage (by name)");
+        System.out.println("Input other keys to return");
+        input = scan.next();
+
+        switch (input) {
+            case "c":
+                carRemover();
+                break;
+
+            case "g":
+                garageRemover();
+                break;
+
+            default:
+                buildCollection();
+                break;
+        }
+    }
+
+    // MODIFIES: myCollection.getCars()
+    // EFFECTS: Remove a car in the collection
+    private void carRemover() {
+        System.out.println("Which car do you want to remove?");
+        String id = scan.next();
+        ArrayList<Car> cars = myCollection.getCars();
+        int carSize = cars.size();
+
+        if (carSize == 0) {
+            System.out.println("You have no cars to remove!");
+        } else {
+            myCollection.removeCar(cars, id);
+
+            System.out.println(id + " is removed!");
+            System.out.println("Now your collection has:");
+
+            for (Car c : cars) {
+                System.out.println(c.getName() + " which is a " + c.getType());
+            }
+        }
+        buildCollection();
+    }
+
+    // MODIFIES: myCollection.getSavedGarages()
+    // EFFECTS: Remove a garage in the collection
+    private void garageRemover() {
+        System.out.println("Which garage do you want to remove?");
+        String garage = scan.next();
+        ArrayList<Garage> garages = myCollection.getSavedGarages();
+        int garageSize = garages.size();
+
+        if (garageSize == 0) {
+            System.out.println("You have no garages to remove");
+        } else {
+            myCollection.removeGarage(myCollection, garage);
+
+            System.out.println(garage + " is removed!");
+            System.out.println("Now your garages are:");
+
+            for (Garage g : garages) {
+                System.out.println(g.getName());
+            }
+        }
+        buildCollection();
     }
 
     // -------------------------------------------------------------------------------------
