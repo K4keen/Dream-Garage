@@ -11,10 +11,9 @@ The application are for all car lovers, who are owning lots of cars or will own 
 
 Personally, this project interests me because I am a *car lover* dreaming of being an amateur racer, and the project will bring me a step closer to my dream.
 
+<h3>User Stories</h3>
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
-
-An example of text with **bold** and *italic* fonts.  # project-k3y0d
+- As a user, I want to be able to add a car to my collection
+- As a user, I want to be able to view all cars/garages in my collection
+- As a user, I want to be able to remove a car/garage from my collection
+- As a user, I want to be able to generate a garage by giving the range of the price/year of the car.
