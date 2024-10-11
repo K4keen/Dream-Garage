@@ -17,24 +17,25 @@ public class Garage {
 
     // EFFECTS: Get the name of the garage
     public String getName() {
-        return "null";
+        return this.garageName;
     }
 
     // EFFECTS: Get the list of cars in this garage
     public ArrayList<Car> getCars() {
-        //stub
+        return this.cars;
     }
 
     // MODIFIES: this.cars
     // EFFECTS: Add a car into the garage
     public void addCar(Car car) {
-        //stub
+        cars.add(car);
     }
 
     // MODIFIES: this.cars
     // EFFECTS: Remove all the cars in the garage given
     public void removeCars(Garage garage) {
-        //stub
+        cars = garage.getCars();
+        cars.removeAll(cars);
     }
 
 }
