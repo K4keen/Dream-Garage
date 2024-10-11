@@ -18,32 +18,40 @@ public class Collection {
 
     // EFFECTS: Get the cars in the collection
     public ArrayList<Car> getCars() {
-        //stub
+        return cars;
     }
 
     // EFFECTS: Get the saved garages in the collection
     public ArrayList<Garage> getSavedGarages() {
-        //stub
+        return savedGarages;
     }
 
     // MODIFIES: this.cars
     // EFFECTS: Add a car to the collection and return a message if the car was
     // added successfully
     public void addCar(Car car) {
-        //stub
+        cars.add(car);
     }
 
     // MODIFIES: this.cars
     // EFFECTS: Remove a specific car from the collection by ID
     public void removeCar(ArrayList<Car> cars, String id) {
-       //stub
+        int size = cars.size();
+
+        for (int i = size - 1; i >= 0; i--) {
+            Car item = cars.get(i);
+            if (id.equals(item.getId())) {
+                cars.remove(item);
+            }
+        }
+
     }
 
     // MODIFIES: this.garage
     // EFFECTS: Add a garage to the collection and return a message if the car was
     // added successfully
     public void addGarage(Garage garage) {
-        //stub
+        savedGarages.add(garage);
     }
 
     // MODIFIES: this.collection
@@ -51,7 +59,17 @@ public class Collection {
     // EFFECTS: Remove a specific garage from the collection by using its name，then
     // show the garages left
     public void removeGarage(Collection myCollection, String garage) {
-        //stub
+
+        ArrayList<Garage> garages = myCollection.getSavedGarages();
+        int size = garages.size();
+
+        for (int i = size - 1; i >= 0; i--) {
+            Garage item = garages.get(i);
+            if (garage.equals(item.getName())) {
+                garages.remove(item);
+            }
+        }
+
     }
 
 }
