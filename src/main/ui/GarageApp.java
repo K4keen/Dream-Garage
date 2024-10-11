@@ -273,19 +273,75 @@ public class GarageApp {
 
     // EFFECTS: Generate a new garage by adding cars into it
     private void smartGenerator() {
-        // TODO
+        System.out.println("Which function do you want to use?");
+        System.out.println("p - create a new garage based on price boundaries");
+        System.out.println("y - create a new garage based on year range");
+        System.out.println("Input other keys to return");
+        input = scan.next();
+
+        switch (input) {
+            case "p":
+                priceBoundGarageGenerator();
+                break;
+
+            case "y":
+                yearBoundGarageGenerator();
+                break;
+        }
+        buildCollection();
     }
-    
 
+    // EFFECTS: After asking for boundaries for price, create a new garage and store
+    // it into the collection then call the smartGenerator again
+    // MODIFIES: this.collection
+    private void priceBoundGarageGenerator() {
+        ArrayList<Car> cars = myCollection.getCars();
 
+        System.out.println("Your upper bound is?");
+        int upper = scan.nextInt();
+        System.out.println("Your lower bound is?");
+        int lower = scan.nextInt();
 
+        ArrayList<Car> filteredList = filterByPriceRange(cars, lower, upper);
+        String garageName = "$" + lower + "$" + upper;
 
+        Garage g = new Garage(garageName, filteredList);
+        myCollection.addGarage(g);
+
+        ArrayList<Garage> savedGarages = myCollection.getSavedGarages();
+        if (savedGarages.contains(g)) {
+            System.out.println(g.getName() + " is added to the collection!");
+        }
+    }
+
+    // EFFECTS: After asking for boundaries for years, create a new garage and store
+    // it into the collection then call the smartGenerator again
+    // MODIFIES: this.collection
+    private void yearBoundGarageGenerator() {
+        ArrayList<Car> cars = myCollection.getCars();
+
+        System.out.println("Your upper bound is?");
+        int upper = scan.nextInt();
+        System.out.println("Your lower bound is?");
+        int lower = scan.nextInt();
+
+        ArrayList<Car> filteredList = filterByYearRange(cars, lower, upper);
+        String garageName = "y" + lower + upper;
+
+        Garage g = new Garage(garageName, filteredList);
+        myCollection.addGarage(g);
+
+        ArrayList<Garage> savedGarages = myCollection.getSavedGarages();
+        if (savedGarages.contains(g)) {
+            System.out.println(g.getName() + " is added to the collection!");
+        }
+    }
 
     // -------------------------------------------------------------------------------------
 
     /*
      * EFFECTS: Tests whether the given object of type T satisfies
-     *          a specific condition.
+     * a specific condition.
      * return true if the object satisfies the condition; false otherwise
      */
     interface Condition<T> {
@@ -326,7 +382,6 @@ public class GarageApp {
             }
         });
     }
-
 
     // EFFECTS: prints out a line of dashes to act as a divider
     private void printDivider() {
