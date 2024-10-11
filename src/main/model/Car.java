@@ -31,47 +31,58 @@ public class Car {
     // than 1 digit
     // EFFECTS: generate an ID for each car
     public String idCreator() {
-        return "null";
+        char fn = name.charAt(0);
+        String firstName = Character.toString(fn);
+
+        char ft = type.charAt(0);
+        String firstType = Character.toString(ft);
+
+        char fc = color.charAt(0);
+        String firstColor = Character.toString(fc);
+
+        String accMiles = Integer.toString(miles);
+
+        return firstName + firstType + firstColor + accMiles;
     }
 
     // EFFECTS: get the name of this car
     public String getName() {
-        return "null";
+        return name;
     }
 
     // EFFECTS: get the type of this car
     public String getType() {
-        return "null";
+        return type;
     }
 
     // EFFECTS: get the color of this car
     public String getColor() {
-        return "null";
+        return color;
     }
 
     // EFFECTS: get the year of this car
     public int getYear() {
-        return 0;
+        return year;
     }
 
     // EFFECTS: get the miles of this car
     public int getMiles() {
-        return 0;
+        return miles;
     }
 
     // EFFECTS: get the horse power of this car
     public int getHp() {
-        return 0;
+        return hp;
     }
 
     // EFFECTS: get the price of this car
     public int getPrice() {
-        return 0;
+        return price;
     }
 
     // EFFECTS: get the id of this car
     public String getId() {
-        return "null";
+        return id;
     }
 
 }
