@@ -94,7 +94,28 @@ public class GarageApp {
 
     // EFFECTS: Add a car to the collection
     private void addCollection() {
-        // TODO
+        System.out.println("What's your car's name?");
+        String name = scan.next();
+        System.out.println("What type is your car");
+        String type = scan.next();
+        System.out.println("What color is your car");
+        String color = scan.next();
+        System.out.println("What year is your car");
+        int year = scan.nextInt();
+        System.out.println("How far did your car run?");
+        int miles = scan.nextInt();
+        System.out.println("How much horse power does your car have?");
+        int hp = scan.nextInt();
+        System.out.println("How much is the car?");
+        int price = scan.nextInt();
+
+        Car c = new Car(name, type, color, year, miles, hp, price);
+        myCollection.addCar(c);
+        ArrayList<Car> cars = myCollection.getCars();
+        if (cars.contains(c)) {
+            System.out.println(c.getName() + " is added to the collection!");
+        }
+        buildCollection();
     }
 
     // -------------------------------------------------------------------------------------
@@ -117,7 +138,7 @@ public class GarageApp {
 
     // EFFECTS: Generate a new garage by adding cars into it
     private void smartGenerator() {
-        //TODO
+        // TODO
     }
     // -------------------------------------------------------------------------------------
 
