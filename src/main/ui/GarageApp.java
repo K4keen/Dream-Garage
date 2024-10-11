@@ -89,7 +89,6 @@ public class GarageApp {
                 break;
         }
     }
-
     // -------------------------------------------------------------------------------------
 
     // EFFECTS: Add a car to the collection
@@ -190,6 +189,7 @@ public class GarageApp {
     }
 
     // -------------------------------------------------------------------------------------
+
     // EFFECTS: Show a list of all cars in the collection
     public void viewCars() {
         ArrayList<Car> cars = myCollection.getCars();
@@ -232,6 +232,7 @@ public class GarageApp {
         }
         buildCollection();
     }
+
     // -------------------------------------------------------------------------------------
 
     // EFFECTS: Show the list of cars in the selected garage from the saved garages
@@ -339,11 +340,6 @@ public class GarageApp {
 
     // -------------------------------------------------------------------------------------
 
-    /*
-     * EFFECTS: Tests whether the given object of type T satisfies
-     * a specific condition.
-     * return true if the object satisfies the condition; false otherwise
-     */
     interface Condition<T> {
         boolean test(T t);
     }
@@ -387,4 +383,5 @@ public class GarageApp {
     private void printDivider() {
         System.out.println("------------------------------------");
     }
+
 }
