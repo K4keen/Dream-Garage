@@ -89,6 +89,7 @@ public class Car implements Writable{
         return id;
     }
 
+    //EFFECTS: return this car as a Json object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

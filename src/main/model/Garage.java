@@ -2,8 +2,13 @@ package model;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import persistence.Writable;
+
 //Represent a garage which has a name and a list of cars
-public class Garage {
+public class Garage implements Writable{
     private String garageName;
     private ArrayList<Car> cars;
 
@@ -38,4 +43,14 @@ public class Garage {
         cars.removeAll(cars);
     }
 
+    //EFFECTS: returns this garage as a JSON object
+    @Override
+    public JSONObject toJson() {
+        //stub
+    }
+
+    // EFFECTS: returns the cars in this garage as a JSON array
+    public JSONArray carsToJsonArray(){
+        //stub
+    }
 }

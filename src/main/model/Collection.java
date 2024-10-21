@@ -2,6 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 // Represent all cars and garages the user saved
 public class Collection {
 
@@ -70,6 +73,22 @@ public class Collection {
             }
         }
 
+    }
+
+    //EFFECTS: Return this collection as a Json objective
+    @Override
+    public JSONObject toJson(){
+        //stub
+    }
+
+    // EFFECTS: returns cars in this collection as a JSON array
+    public JSONArray carsToJson(){
+
+    }
+
+    //EFFECTS: returns garages in this collection as a JSON array
+    public JSONArray garagesToJson(){
+        //stub
     }
 
 }
