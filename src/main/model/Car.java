@@ -1,7 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+
+import persistence.Writable;
+
 // Represents a car having its name, type, color, hp , the year it was made and the milage it has run.
-public class Car {
+public class Car implements Writable{
     private String id;
     private String name;
     private String type;
@@ -85,4 +89,17 @@ public class Car {
         return id;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("type", type);
+        json.put("color", color);
+        json.put("year", Integer.toString(year));
+        json.put("miles", Integer.toString(miles));
+        json.put("hp", Integer.toString(hp));
+        json.put("price", Integer.toString(price));
+        json.put("id", id);
+        return json;
+    }
 }
