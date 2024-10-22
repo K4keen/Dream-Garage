@@ -55,8 +55,8 @@ public class JsonWriterTest extends JsonTest {
             Car testCar2 = new Car("Ferrari SF90", "hyper car", "red", 2020, 40000, 986, 698888);
             Car testCar3 = new Car("McLaren P1", "hyper car", "yellow", 2014, 100, 916, 1350000);
             testCars1.add(testCar1);
-            testCars1.add(testCar3);
-            testCars2.add(testCar2);
+            testCars1.add(testCar2);
+            testCars2.add(testCar3);
 
             Garage testGarage1 = new Garage("G1", testCars1);
             Garage testGarage2 = new Garage("G2", testCars2);
@@ -79,9 +79,9 @@ public class JsonWriterTest extends JsonTest {
             checkCar("Ferrari SF90", "hyper car", "red", 2020, 40000, 986, 698888, "Fhr40000", cars.get(1));
             checkCar("McLaren P1", "hyper car", "yellow", 2014, 100, 916, 1350000, "Mhy100", cars.get(2));
 
-            assertEquals(3, garages.size());
-            checkGarage("G1", testCars1, garages.get(1));
-            checkGarage("G2", testCars2, garages.get(2));
+            assertEquals(2, garages.size());
+            checkGarage("G1", testCars1, garages.get(0));
+            checkGarage("G2", testCars2, garages.get(1));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

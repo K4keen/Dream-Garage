@@ -15,6 +15,14 @@ public class Garage implements Writable{
     // MODIFIES: this
     // EFFECTS: Construct a new garage with an empty list of cars
     // and a garage name
+    public Garage(String garageName) {
+        this.garageName = garageName;
+        cars = new ArrayList<Car>();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Construct a new garage with a list of cars
+    // and a garage name
     public Garage(String garageName, ArrayList<Car> cars) {
         this.garageName = garageName;
         this.cars = cars;
@@ -47,7 +55,7 @@ public class Garage implements Writable{
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("garageName", garageName);
+        json.put("name", garageName);
         json.put("cars", carsToJsonArray());
         return json;
     }

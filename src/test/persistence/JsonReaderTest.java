@@ -52,8 +52,8 @@ class JsonReaderTest extends JsonTest {
             checkCar("Maybach S680", "sedan", "black", 2023, 5000, 621, 349597, "Msb5000", cars.get(3));
 
             testGarage1.add(cars.get(0));
-            testGarage1.add(cars.get(3));
-            assertEquals(2, garages.size());
+            testGarage1.add(cars.get(2));
+            assertEquals(1, garages.size());
 
             checkGarage("racer's favorite", testGarage1, garages.get(0));
         } catch (IOException e) {
