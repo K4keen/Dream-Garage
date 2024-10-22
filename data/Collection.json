@@ -1,0 +1,15 @@
+{
+  "cars": [
+    {
+      "name": "Porsche GT3 RS",
+      "type": "racing car",
+      "color": "white and red",
+      "year": "2024",
+      "miles": "2500",
+      "hp": "518",
+      "price": "328888",
+      "id": "Prw2500"
+    }
+  ],
+  "garages": []
+}

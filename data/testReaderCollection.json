@@ -1,0 +1,96 @@
+{
+  "cars": [
+    {
+      "name": "Porsche GT3 RS",
+      "type": "racing car",
+      "color": "white and red",
+      "year": "2024",
+      "miles": "2500",
+      "hp": "518",
+      "price": "328888",
+      "id": "Prw2500"
+    },
+    {
+      "name": "Ferrari SF90",
+      "type": "hyper car",
+      "color": "red",
+      "year": "2020",
+      "miles": "40000",
+      "hp": "986",
+      "price": "698888",
+      "id": "Fhr40000"
+    },
+    {
+      "name": "McLaren P1",
+      "type": "hyper car",
+      "color": "yellow",
+      "year": "2014",
+      "miles": "100",
+      "hp": "916",
+      "price": "1350000",
+      "id": "Mhy100"
+    },
+    {
+      "name": "Maybach S680",
+      "type": "sedan",
+      "color": "black",
+      "year": "2023",
+      "miles": "5000",
+      "hp": "621",
+      "price": "349597",
+      "id": "Msb5000"
+    }
+  ],
+  "garages": [
+    {
+      "songs": [
+        {
+          "name": "Porsche GT3 RS",
+          "type": "racing car",
+          "color": "white and red",
+          "year": "2024",
+          "miles": "2500",
+          "hp": "518",
+          "price": "328888",
+          "id": "Prw2500"
+        },
+        {
+          "name": "Maybach S680",
+          "type": "sedan",
+          "color": "black",
+          "year": "2023",
+          "miles": "5000",
+          "hp": "621",
+          "price": "349597",
+          "id": "Msb5000"
+        }
+      ],
+      "name": "the ultimate garage"
+    },
+    {
+      "songs": [
+        {
+          "name": "Porsche GT3 RS",
+          "type": "racing car",
+          "color": "white and red",
+          "year": "2024",
+          "miles": "2500",
+          "hp": "518",
+          "price": "328888",
+          "id": "Prw2500"
+        },
+        {
+          "name": "McLaren P1",
+          "type": "hyper car",
+          "color": "yellow",
+          "year": "2014",
+          "miles": "100",
+          "hp": "916",
+          "price": "1350000",
+          "id": "Mhy100"
+        }
+      ],
+      "name": "racer's favorite"
+    }
+  ]
+}
