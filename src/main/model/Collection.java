@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import persistence.Writable;
+
 // Represent all cars and garages the user saved
-public class Collection {
+public class Collection implements Writable{
 
     private ArrayList<Car> cars;
     private ArrayList<Garage> savedGarages;
@@ -78,17 +80,32 @@ public class Collection {
     //EFFECTS: Return this collection as a Json objective
     @Override
     public JSONObject toJson(){
-        //stub
+        JSONObject json = new JSONObject();
+        json.put("cars", carsToJson());
+        json.put("garages", garagesToJson());
+        return json;
     }
 
     // EFFECTS: returns cars in this collection as a JSON array
     public JSONArray carsToJson(){
+        JSONArray jsonArray = new JSONArray();
 
+        for (Car c : cars) {
+            jsonArray.put(c.toJson());
+        }
+
+        return jsonArray;
     }
 
     //EFFECTS: returns garages in this collection as a JSON array
     public JSONArray garagesToJson(){
-        //stub
+        JSONArray jsonArray = new JSONArray();
+
+        for (Garage g : savedGarages) {
+            jsonArray.put(g.toJson());
+        }
+
+        return jsonArray;
     }
 
 }
