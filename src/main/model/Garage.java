@@ -46,11 +46,20 @@ public class Garage implements Writable{
     //EFFECTS: returns this garage as a JSON object
     @Override
     public JSONObject toJson() {
-        //stub
+        JSONObject json = new JSONObject();
+        json.put("garageName", garageName);
+        json.put("cars", carsToJsonArray());
+        return json;
     }
 
     // EFFECTS: returns the cars in this garage as a JSON array
     public JSONArray carsToJsonArray(){
-        //stub
+        JSONArray jsonArray = new JSONArray();
+
+        for (Car c : cars) {
+            jsonArray.put(c.toJson());
+        }
+
+        return jsonArray;
     }
 }
