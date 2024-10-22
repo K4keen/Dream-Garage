@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 // Represent all cars and garages the user saved
-public class Collection implements Writable{
+public class Collection implements Writable {
 
     private ArrayList<Car> cars;
     private ArrayList<Garage> savedGarages;
@@ -77,9 +77,9 @@ public class Collection implements Writable{
 
     }
 
-    //EFFECTS: Return this collection as a Json objective
+    // EFFECTS: Return this collection as a Json objective
     @Override
-    public JSONObject toJson(){
+    public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("cars", carsToJson());
         json.put("garages", garagesToJson());
@@ -87,7 +87,7 @@ public class Collection implements Writable{
     }
 
     // EFFECTS: returns cars in this collection as a JSON array
-    public JSONArray carsToJson(){
+    public JSONArray carsToJson() {
         JSONArray jsonArray = new JSONArray();
 
         for (Car c : cars) {
@@ -97,8 +97,8 @@ public class Collection implements Writable{
         return jsonArray;
     }
 
-    //EFFECTS: returns garages in this collection as a JSON array
-    public JSONArray garagesToJson(){
+    // EFFECTS: returns garages in this collection as a JSON array
+    public JSONArray garagesToJson() {
         JSONArray jsonArray = new JSONArray();
 
         for (Garage g : savedGarages) {

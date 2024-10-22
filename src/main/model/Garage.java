@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 //Represent a garage which has a name and a list of cars
-public class Garage implements Writable{
+public class Garage implements Writable {
     private String garageName;
     private ArrayList<Car> cars;
 
@@ -51,7 +51,7 @@ public class Garage implements Writable{
         cars.removeAll(cars);
     }
 
-    //EFFECTS: returns this garage as a JSON object
+    // EFFECTS: returns this garage as a JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -61,7 +61,7 @@ public class Garage implements Writable{
     }
 
     // EFFECTS: returns the cars in this garage as a JSON array
-    public JSONArray carsToJsonArray(){
+    public JSONArray carsToJsonArray() {
         JSONArray jsonArray = new JSONArray();
 
         for (Car c : cars) {

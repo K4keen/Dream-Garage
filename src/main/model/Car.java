@@ -5,7 +5,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 // Represents a car having its name, type, color, hp , the year it was made and the milage it has run.
-public class Car implements Writable{
+public class Car implements Writable {
     private String id;
     private String name;
     private String type;
@@ -89,7 +89,7 @@ public class Car implements Writable{
         return id;
     }
 
-    //EFFECTS: return this car as a Json object
+    // EFFECTS: return this car as a Json object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

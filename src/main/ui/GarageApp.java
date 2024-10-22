@@ -1,11 +1,15 @@
 package ui;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import model.Car;
 import model.Collection;
 import model.Garage;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 //UI for Dream Garage Application
 
@@ -18,12 +22,17 @@ public class GarageApp {
     private Collection myCollection = new Collection();
     private ArrayList<Garage> garages = new ArrayList<Garage>();
 
+    private static final String JSON_STORE = "./data/Collection.json";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
     // MODIFIES: this
     // EFFECTS: initializes the application with the starting values
     public void init() {
         this.myCollection = new Collection();
-
         this.scan = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         this.running = true;
     }
 
@@ -62,6 +71,8 @@ public class GarageApp {
         System.out.println("vc - view your car collection");
         System.out.println("vg - view your garages");
         System.out.println("g - smart generator");
+        System.out.println("s - save the collection");
+        System.out.println("l - load the collection");
         System.out.println("q - quit the menu");
     }
 
@@ -69,20 +80,19 @@ public class GarageApp {
     private void builderCommand() {
         input = scan.next();
         switch (input) {
-            case "a":
-                addCollection();
+            case "a": addCollection();
                 break;
-            case "r":
-                removeCollection();
+            case "r": removeCollection();
                 break;
-            case "vc":
-                viewCars();
+            case "vc": viewCars();
                 break;
-            case "vg":
-                viewGarageList();
+            case "vg": viewGarageList();
                 break;
-            case "g":
-                smartGenerator();
+            case "g": smartGenerator();
+                break;
+            case "s": saveWorkRoom();
+                break;
+            case "l": loadWorkRoom();
                 break;
             case "q":
                 running = false;
@@ -384,4 +394,28 @@ public class GarageApp {
         System.out.println("------------------------------------");
     }
 
+    // -------------------------------------------------------------------------------------
+
+    // EFFECTS: saves the workroom to file
+    private void saveWorkRoom() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(myCollection);
+            jsonWriter.close();
+            System.out.println("Saved to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadWorkRoom() {
+        try {
+            myCollection = jsonReader.read();
+            System.out.println("Loaded from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
 }

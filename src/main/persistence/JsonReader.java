@@ -56,7 +56,8 @@ public class JsonReader {
         String miles = jsonObject.getString("miles");
         String hp = jsonObject.getString("hp");
         String price = jsonObject.getString("price");
-        Car car = new Car(name, type,color,Integer.parseInt(year),Integer.parseInt(miles),Integer.parseInt(hp),Integer.parseInt(price));
+        Car car = new Car(name, type, color, Integer.parseInt(year),
+                Integer.parseInt(miles), Integer.parseInt(hp), Integer.parseInt(price));
         collection.addCar(car);
     }
 
@@ -99,7 +100,8 @@ public class JsonReader {
         String miles = jsonObject.getString("miles");
         String hp = jsonObject.getString("hp");
         String price = jsonObject.getString("price");
-        Car car = new Car(name, type,color,Integer.parseInt(year),Integer.parseInt(miles),Integer.parseInt(hp),Integer.parseInt(price));
+        Car car = new Car(name, type, color, Integer.parseInt(year),
+                Integer.parseInt(miles), Integer.parseInt(hp), Integer.parseInt(price));
         g.addCar(car);
     }
 
