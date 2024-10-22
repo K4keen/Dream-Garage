@@ -8,5 +8,9 @@
         "lib/**/*.jar"
     ],
     "java.checkstyle.configuration": "${workspaceFolder}/checkstyle.xml",
-    "java.checkstyle.version": "10.2"
+    "java.checkstyle.version": "10.2",
+    "cSpell.words": [
+        "Laren",
+        "Maybach"
+    ]
 }
