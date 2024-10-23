@@ -16,4 +16,6 @@ Personally, this project interests me because I am a *car lover* dreaming of bei
 - As a user, I want to be able to add a car to my collection
 - As a user, I want to be able to view all cars/garages in my collection
 - As a user, I want to be able to remove a car/garage from my collection
-- As a user, I want to be able to generate a garage by giving the range of the price/year of the car.
+- As a user, I want to be able to generate a garage by giving the range of the price/year of the car
+- As a user, I want to be able to save my cars/garages to my collection
+- As a user, I want to be able to load my previous saved cars/garages from my collection
