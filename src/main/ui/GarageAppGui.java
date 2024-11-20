@@ -49,12 +49,47 @@ public class GarageAppGui {
 
     //EFFECTS: create a menu bar for saving and loading function 
     private JMenuBar createMenuBar() {
-        // TODO
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu fileMenu = new JMenu("File");
+        JMenuItem saveItem = new JMenuItem("Save");
+        saveItem.addActionListener(e -> saveCollectionToFile());
+        JMenuItem loadItem = new JMenuItem("Load");
+        loadItem.addActionListener(e -> loadCollectionFromFile());
+        fileMenu.add(saveItem);
+        fileMenu.add(loadItem);
+
+        menuBar.add(fileMenu);
+        return menuBar;
     }
+
 
     //EFFECTS: create navigation bars for software functionalities 
     private JPanel createNavigationPanel() {
-        // TODO
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(5, 1));
+
+        JButton viewCarsButton = new JButton("View Cars");
+        viewCarsButton.addActionListener(e -> showViewCarsPanel());
+        JButton viewGaragesButton = new JButton("View Garages");
+        viewGaragesButton.addActionListener(e -> showViewGaragesPanel());
+        JButton addCarButton = new JButton("Add Car");
+        addCarButton.addActionListener(e -> showAddCarPanel());
+        JButton smartGeneratorButton = new JButton("Smart Generator");
+        smartGeneratorButton.addActionListener(e -> showSmartGeneratorPanel());
+        JButton statsButton = new JButton("Price Distribution");
+        statsButton.addActionListener(e -> displayPriceChart());
+
+        panel.add(viewCarsButton);
+        panel.add(viewGaragesButton);
+        panel.add(addCarButton);
+        panel.add(smartGeneratorButton);
+        panel.add(statsButton);
+
+        return panel;
     }
+
+   
+    
 
 }
