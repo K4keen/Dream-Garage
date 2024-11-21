@@ -1,29 +1,76 @@
 {
-    "garages": [{
-        "cars": [
-            {
-                "color": "white and red",
-                "year": "2024",
-                "price": "328888",
-                "name": "Porsche GT3 RS",
-                "hp": "518",
-                "id": "Prw2500",
-                "type": "racing car",
-                "miles": "2500"
-            },
-            {
-                "color": "yellow",
-                "year": "2014",
-                "price": "1350000",
-                "name": "McLaren P1",
-                "hp": "916",
-                "id": "Mhy100",
-                "type": "hyper car",
-                "miles": "100"
-            }
-        ],
-        "name": "racersfavorite"
-    }],
+    "garages": [
+        {
+            "cars": [
+                {
+                    "color": "white and red",
+                    "year": "2024",
+                    "price": "328888",
+                    "name": "Porsche GT3 RS",
+                    "hp": "518",
+                    "id": "Prw2500",
+                    "type": "racing car",
+                    "miles": "2500"
+                },
+                {
+                    "color": "yellow",
+                    "year": "2014",
+                    "price": "1350000",
+                    "name": "McLaren P1",
+                    "hp": "916",
+                    "id": "Mhy100",
+                    "type": "hyper car",
+                    "miles": "100"
+                }
+            ],
+            "name": "racersfavorite"
+        },
+        {
+            "cars": [
+                {
+                    "color": "white and red",
+                    "year": "2024",
+                    "price": "328888",
+                    "name": "Porsche GT3 RS",
+                    "hp": "518",
+                    "id": "Prw2500",
+                    "type": "racing car",
+                    "miles": "2500"
+                },
+                {
+                    "color": "red",
+                    "year": "2020",
+                    "price": "698888",
+                    "name": "Ferrari SF90",
+                    "hp": "986",
+                    "id": "Fhr40000",
+                    "type": "hyper car",
+                    "miles": "40000"
+                },
+                {
+                    "color": "black",
+                    "year": "2023",
+                    "price": "349597",
+                    "name": "Maybach S680",
+                    "hp": "621",
+                    "id": "Msb5000",
+                    "type": "sedan",
+                    "miles": "5000"
+                },
+                {
+                    "color": "green",
+                    "year": "2024",
+                    "price": "100000",
+                    "name": "M4",
+                    "hp": "520",
+                    "id": "Msg100",
+                    "type": "sport car",
+                    "miles": "100"
+                }
+            ],
+            "name": "By Year: 2020-2025"
+        }
+    ],
     "cars": [
         {
             "color": "white and red",
@@ -74,6 +121,16 @@
             "id": "Msg100",
             "type": "sport car",
             "miles": "100"
+        },
+        {
+            "color": "black",
+            "year": "2021",
+            "price": "2500000",
+            "name": "Lexus LFA",
+            "hp": "552",
+            "id": "LSb10000",
+            "type": "Sedan",
+            "miles": "10000"
         }
     ]
 }
