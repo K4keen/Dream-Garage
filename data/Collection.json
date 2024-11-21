@@ -66,23 +66,13 @@
             "miles": "5000"
         },
         {
-            "color": "black",
-            "year": "2005",
-            "price": "1000",
-            "name": "maoqiyue",
-            "hp": "1000",
-            "id": "mhb1000",
-            "type": "human",
-            "miles": "1000"
-        },
-        {
             "color": "green",
             "year": "2024",
             "price": "100000",
             "name": "M4",
             "hp": "520",
             "id": "Msg100",
-            "type": "sportcar",
+            "type": "sport car",
             "miles": "100"
         }
     ]

@@ -91,11 +91,13 @@ public class GarageAppGui {
         contentPanel.removeAll();
         JPanel panel = new JPanel();
         ArrayList<Car> cars = myCollection.getCars();
+        String[] columnNames = { "Name", "Type", "Color", "Year", "Miles", "HP", "Price" };
+        String[][] data = new String[cars.size()][7];
+
         if (cars.isEmpty()) {
             panel.add(new JLabel("No cars in collection."));
         } else {
-            String[] columnNames = { "Name", "Type", "Color", "Year", "Miles", "HP", "Price" };
-            String[][] data = new String[cars.size()][7];
+
             for (int i = 0; i < cars.size(); i++) {
                 Car car = cars.get(i);
                 data[i][0] = car.getName();
@@ -106,9 +108,26 @@ public class GarageAppGui {
                 data[i][5] = String.valueOf(car.getHp());
                 data[i][6] = String.valueOf(car.getPrice());
             }
-            JTable table = new JTable(data, columnNames);
-            panel.add(new JScrollPane(table));
         }
+
+        JTable table = new JTable(data, columnNames);
+        panel.add(new JScrollPane(table));
+
+        // Add a remove button in view cars to align with the method in user story
+        JButton removeButton = new JButton("Remove Selected Car");
+        removeButton.addActionListener(e -> {
+            int selectedRow = table.getSelectedRow();
+            if (selectedRow >= 0) {
+                Car car = cars.get(selectedRow); 
+                myCollection.getCars().remove(car);
+                JOptionPane.showMessageDialog(frame, car.getName() + " removed!");
+                showViewCarsPanel();
+            } else {
+                JOptionPane.showMessageDialog(frame, "Please select a car to remove.");
+            }
+        });
+        panel.add(removeButton, BorderLayout.SOUTH);
+
         contentPanel.add(panel);
         contentPanel.revalidate();
         contentPanel.repaint();
@@ -163,7 +182,7 @@ public class GarageAppGui {
         contentPanel.repaint();
     }
 
-    //EFFECTS: Call JsonWriter to save the data
+    // EFFECTS: Call JsonWriter to save the data
     private void saveCollectionToFile() {
         JFileChooser fileChooser = new JFileChooser();
         int returnVal = fileChooser.showSaveDialog(frame);
@@ -181,7 +200,7 @@ public class GarageAppGui {
         }
     }
 
-    //EFFECTS: Call JsonReader to load the data.
+    // EFFECTS: Call JsonReader to load the data.
     private void loadCollectionFromFile() {
         JFileChooser fileChooser = new JFileChooser();
         int returnVal = fileChooser.showOpenDialog(frame);
@@ -198,14 +217,14 @@ public class GarageAppGui {
         }
     }
 
-    //EFFECTS: Display a list of garages stored in the collection
+    // EFFECTS: Display a list of garages stored in the collection
     private void showViewGaragesPanel() {
-        
+
     }
 
-    //EFFECTS: Display the user interface of the smart generator
+    // EFFECTS: Display the user interface of the smart generator
     private void showSmartGeneratorPanel() {
-        
+
     }
 
 }
