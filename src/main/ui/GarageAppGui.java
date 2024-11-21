@@ -165,12 +165,37 @@ public class GarageAppGui {
 
     //EFFECTS: Call JsonWriter to save the data
     private void saveCollectionToFile() {
-        
+        JFileChooser fileChooser = new JFileChooser();
+        int returnVal = fileChooser.showSaveDialog(frame);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            try {
+                JsonWriter writer = new JsonWriter(file.getAbsolutePath());
+                writer.open();
+                writer.write(myCollection);
+                writer.close();
+                JOptionPane.showMessageDialog(frame, "Collection saved successfully!");
+            } catch (FileNotFoundException e) {
+                JOptionPane.showMessageDialog(frame, "Error saving file: " + e.getMessage());
+            }
+        }
     }
 
     //EFFECTS: Call JsonReader to load the data.
     private void loadCollectionFromFile() {
-        
+        JFileChooser fileChooser = new JFileChooser();
+        int returnVal = fileChooser.showOpenDialog(frame);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            try {
+                JsonReader reader = new JsonReader(file.getAbsolutePath());
+                myCollection = reader.read();
+                JOptionPane.showMessageDialog(frame, "Collection loaded successfully!");
+                showViewCarsPanel();
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(frame, "Error loading file: " + e.getMessage());
+            }
+        }
     }
 
     //EFFECTS: Display a list of garages stored in the collection
