@@ -2,9 +2,12 @@ package ui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import model.*;
@@ -24,7 +27,100 @@ public class GarageAppGUI {
     public GarageAppGUI() {
         myCollection = new Collection();
         initUI();
+        showCoverPanel();
     }
+
+    //EFFECTS: Display the panel for the cover of the software
+    private void showCoverPanel() {
+        contentPanel.removeAll(); 
+        JPanel coverPanel = new JPanel(new BorderLayout()); 
+    
+        JLabel coverImage = new JLabel("No Cover Image Set", SwingConstants.CENTER);
+        coverImage.setFont(new Font("Arial", Font.BOLD, 18));
+        coverImage.setHorizontalAlignment(SwingConstants.CENTER);
+        coverImage.setVerticalAlignment(SwingConstants.CENTER);
+    
+        String savedCoverPath = loadCoverImagePath();
+        if (savedCoverPath != null) {
+            File imageFile = new File(savedCoverPath);
+            if (imageFile.exists()) { 
+                ImageIcon icon = new ImageIcon(savedCoverPath);
+                Image scaledImage = icon.getImage().getScaledInstance(800, 500, Image.SCALE_SMOOTH);
+                coverImage.setIcon(new ImageIcon(scaledImage));
+                coverImage.setText("");
+            }
+        }
+    
+        coverPanel.add(coverImage, BorderLayout.CENTER);
+    
+        JPanel buttonPanel = new JPanel();
+        JButton uploadButton = new JButton("Upload Cover Image");
+        JButton startButton = new JButton("Start Application");
+    
+        uploadButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            int returnValue = fileChooser.showOpenDialog(frame);
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = fileChooser.getSelectedFile();
+                ImageIcon icon = new ImageIcon(selectedFile.getAbsolutePath());
+    
+                Image scaledImage = icon.getImage().getScaledInstance(800, 500, Image.SCALE_SMOOTH);
+                coverImage.setIcon(new ImageIcon(scaledImage));
+                coverImage.setText("");
+
+                saveCoverImagePath(selectedFile.getAbsolutePath());
+            }
+        });
+    
+        startButton.addActionListener(e -> showMainPanel());
+    
+        buttonPanel.add(uploadButton);
+        buttonPanel.add(startButton);
+    
+        coverPanel.add(buttonPanel, BorderLayout.SOUTH); 
+    
+        contentPanel.add(coverPanel);
+        contentPanel.revalidate(); 
+        contentPanel.repaint();
+    }
+
+    //EFFECTS: Display the main panel of the software
+    private void showMainPanel() {
+        contentPanel.removeAll();
+        JPanel mainPanel = new JPanel(new BorderLayout());
+    
+        JLabel welcomeLabel = new JLabel("Welcome to Dream Garage!", SwingConstants.CENTER);
+        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
+    
+        mainPanel.add(welcomeLabel, BorderLayout.CENTER);
+    
+        contentPanel.add(mainPanel);
+        contentPanel.revalidate();
+        contentPanel.repaint();
+    }
+
+    //EFFECTS: Save the cover image that the user set last time
+    private void saveCoverImagePath(String path) {
+        try (PrintWriter writer = new PrintWriter("cover_config.txt")) {
+            writer.println(path);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(frame, "Error saving cover image: " + e.getMessage());
+        }
+    }
+
+    //EFFECTS: Load the cover image that the user set last time
+    private String loadCoverImagePath() {
+        File file = new File("cover_config.txt");
+        if (file.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                return reader.readLine(); 
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(frame, "Error loading cover image: " + e.getMessage());
+            }
+        }
+        return null;
+    }
+    
 
     // EFFECTS: set up the basic panel of the software
     private void initUI() {
@@ -87,13 +183,13 @@ public class GarageAppGUI {
     private void showViewCarsPanel() {
         contentPanel.removeAll();
         JPanel panel = new JPanel(new BorderLayout());
-    
+
         ArrayList<Car> cars = myCollection.getCars();
-    
+
         if (cars.isEmpty()) {
             panel.add(new JLabel("No cars in collection."), BorderLayout.CENTER);
         } else {
-            String[] columnNames = {"Name", "Type", "Color", "Year", "Miles", "HP", "Price"};
+            String[] columnNames = { "Name", "Type", "Color", "Year", "Miles", "HP", "Price" };
             String[][] data = new String[cars.size()][7];
             for (int i = 0; i < cars.size(); i++) {
                 Car car = cars.get(i);
@@ -105,13 +201,13 @@ public class GarageAppGUI {
                 data[i][5] = String.valueOf(car.getHp());
                 data[i][6] = String.valueOf(car.getPrice());
             }
-    
+
             JTable table = new JTable(data, columnNames);
             panel.add(new JScrollPane(table), BorderLayout.CENTER);
-    
+
             JPanel buttonPanel = new JPanel();
             JButton removeButton = new JButton("Remove Selected Car");
-    
+
             removeButton.addActionListener(e -> {
                 int selectedRow = table.getSelectedRow();
                 if (selectedRow >= 0) {
@@ -123,16 +219,15 @@ public class GarageAppGUI {
                     JOptionPane.showMessageDialog(frame, "Please select a car to remove.");
                 }
             });
-    
+
             buttonPanel.add(removeButton);
             panel.add(buttonPanel, BorderLayout.SOUTH);
         }
-    
+
         contentPanel.add(panel);
         contentPanel.revalidate();
         contentPanel.repaint();
     }
-    
 
     // EFFECTS: Display a panel of adding cars to the collection
     private void showAddCarPanel() {
@@ -220,15 +315,15 @@ public class GarageAppGUI {
 
     // EFFECTS: Display a list of garages stored in the collection
     private void showViewGaragesPanel() {
-        contentPanel.removeAll(); 
-        JPanel panel = new JPanel(new BorderLayout()); 
+        contentPanel.removeAll();
+        JPanel panel = new JPanel(new BorderLayout());
 
         ArrayList<Garage> garages = myCollection.getSavedGarages();
 
         if (garages.isEmpty()) {
-            panel.add(new JLabel("No garages in collection."), BorderLayout.CENTER); 
+            panel.add(new JLabel("No garages in collection."), BorderLayout.CENTER);
         } else {
-            String[] columnNames = { "Garage Name", "Number of Cars" }; 
+            String[] columnNames = { "Garage Name", "Number of Cars" };
             String[][] data = new String[garages.size()][2];
             for (int i = 0; i < garages.size(); i++) {
                 Garage garage = garages.get(i);
@@ -236,15 +331,15 @@ public class GarageAppGUI {
                 data[i][1] = String.valueOf(garage.getCars().size());
             }
 
-            JTable table = new JTable(data, columnNames); 
-            panel.add(new JScrollPane(table), BorderLayout.CENTER); 
+            JTable table = new JTable(data, columnNames);
+            panel.add(new JScrollPane(table), BorderLayout.CENTER);
 
             JPanel buttonPanel = new JPanel();
             JButton viewDetailsButton = new JButton("View Selected Garage");
             JButton removeButton = new JButton("Remove Selected Garage");
 
             viewDetailsButton.addActionListener(e -> {
-                int selectedRow = table.getSelectedRow(); 
+                int selectedRow = table.getSelectedRow();
                 if (selectedRow >= 0) {
                     Garage selectedGarage = garages.get(selectedRow);
                     showGarageDetails(selectedGarage);
@@ -256,7 +351,7 @@ public class GarageAppGUI {
             removeButton.addActionListener(e -> {
                 int selectedRow = table.getSelectedRow();
                 if (selectedRow >= 0) {
-                    Garage selectedGarage = garages.get(selectedRow); 
+                    Garage selectedGarage = garages.get(selectedRow);
                     myCollection.getSavedGarages().remove(selectedGarage);
                     JOptionPane.showMessageDialog(frame, selectedGarage.getName() + " removed!");
                     showViewGaragesPanel();
@@ -298,7 +393,7 @@ public class GarageAppGUI {
                 data[i][6] = String.valueOf(car.getPrice());
             }
 
-            JTable table = new JTable(data, columnNames); 
+            JTable table = new JTable(data, columnNames);
             panel.add(new JScrollPane(table), BorderLayout.CENTER);
 
             JButton backButton = new JButton("Back to Garages");
@@ -315,21 +410,21 @@ public class GarageAppGUI {
     private void showSmartGeneratorPanel() {
         contentPanel.removeAll();
         JPanel panel = new JPanel(new BorderLayout());
-    
-        String[] options = {"By Price", "By Year"};
+
+        String[] options = { "By Price", "By Year" };
         JComboBox<String> generatorOptions = new JComboBox<>(options);
-    
-        JPanel inputPanel = new JPanel(new GridLayout(3, 2, 10, 10)); 
+
+        JPanel inputPanel = new JPanel(new GridLayout(3, 2, 10, 10));
         JLabel lowerLabel = new JLabel("Lower Bound:");
         JTextField lowerField = new JTextField();
         JLabel upperLabel = new JLabel("Upper Bound:");
         JTextField upperField = new JTextField();
-    
+
         inputPanel.add(lowerLabel);
         inputPanel.add(lowerField);
         inputPanel.add(upperLabel);
         inputPanel.add(upperField);
-    
+
         generatorOptions.addActionListener(e -> {
             String selectedOption = (String) generatorOptions.getSelectedItem();
             if ("By Price".equals(selectedOption)) {
@@ -340,15 +435,15 @@ public class GarageAppGUI {
                 upperLabel.setText("End Year:");
             }
         });
-    
+
         JPanel buttonPanel = new JPanel();
         JButton generateButton = new JButton("Generate Garage");
-    
+
         generateButton.addActionListener(e -> {
             try {
                 int lower = Integer.parseInt(lowerField.getText());
                 int upper = Integer.parseInt(upperField.getText());
-    
+
                 String selectedOption = (String) generatorOptions.getSelectedItem();
                 ArrayList<Car> filteredCars;
                 if ("By Price".equals(selectedOption)) {
@@ -356,31 +451,30 @@ public class GarageAppGUI {
                 } else {
                     filteredCars = filterByYearRange(myCollection.getCars(), lower, upper);
                 }
-    
+
                 String garageName = selectedOption + ": " + lower + "-" + upper;
                 Garage garage = new Garage(garageName, filteredCars);
                 myCollection.addGarage(garage);
-    
+
                 JOptionPane.showMessageDialog(frame, "Garage \"" + garageName + "\" created successfully!");
                 showViewGaragesPanel();
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(frame, "Invalid input. Please enter valid numbers.");
             }
         });
-    
+
         buttonPanel.add(generateButton);
-    
+
         panel.add(generatorOptions, BorderLayout.NORTH);
         panel.add(inputPanel, BorderLayout.CENTER);
         panel.add(buttonPanel, BorderLayout.SOUTH);
-    
+
         contentPanel.add(panel);
         contentPanel.revalidate();
         contentPanel.repaint();
     }
-    
 
-    //EFFECTS: Helper method of filtering the Price
+    // EFFECTS: Helper method of filtering the Price
     private ArrayList<Car> filterByPriceRange(ArrayList<Car> cars, int lower, int upper) {
         ArrayList<Car> filtered = new ArrayList<>();
         for (Car car : cars) {
@@ -391,7 +485,7 @@ public class GarageAppGUI {
         return filtered;
     }
 
-    //EFFECTS: Helper method of filtering the Year
+    // EFFECTS: Helper method of filtering the Year
     private ArrayList<Car> filterByYearRange(ArrayList<Car> cars, int lower, int upper) {
         ArrayList<Car> filtered = new ArrayList<>();
         for (Car car : cars) {
@@ -401,7 +495,5 @@ public class GarageAppGUI {
         }
         return filtered;
     }
-    
-    
 
 }
