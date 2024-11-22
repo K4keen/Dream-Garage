@@ -30,7 +30,9 @@ public class GarageAppGUI {
         showCoverPanel();
     }
 
+    
     //EFFECTS: Display the panel for the cover of the software
+    @SuppressWarnings("methodlength")
     private void showCoverPanel() {
         contentPanel.removeAll(); 
         JPanel coverPanel = new JPanel(new BorderLayout()); 
@@ -99,6 +101,7 @@ public class GarageAppGUI {
         contentPanel.repaint();
     }
 
+    //MODIFIES: this
     //EFFECTS: Save the cover image that the user set last time
     private void saveCoverImagePath(String path) {
         try (PrintWriter writer = new PrintWriter("cover_config.txt")) {
@@ -142,6 +145,7 @@ public class GarageAppGUI {
         frame.setVisible(true);
     }
 
+    //MODIFIES: this
     // EFFECTS: create a menu bar for saving and loading function
     private JMenuBar createMenuBar() {
         JMenuBar menuBar = new JMenuBar();
@@ -158,6 +162,7 @@ public class GarageAppGUI {
         return menuBar;
     }
 
+    //MODIFIES: this
     // EFFECTS: create navigation bars for software functionalities
     private JPanel createNavigationPanel() {
         JPanel panel = new JPanel();
@@ -179,7 +184,9 @@ public class GarageAppGUI {
         return panel;
     }
 
+    
     // EFFECTS: Display a table of cars on a panel
+    @SuppressWarnings("methodlength")
     private void showViewCarsPanel() {
         contentPanel.removeAll();
         JPanel panel = new JPanel(new BorderLayout());
@@ -229,7 +236,9 @@ public class GarageAppGUI {
         contentPanel.repaint();
     }
 
+    //MODIFIES: this
     // EFFECTS: Display a panel of adding cars to the collection
+    @SuppressWarnings("methodlength")
     private void showAddCarPanel() {
         contentPanel.removeAll();
         JPanel panel = new JPanel(new GridLayout(8, 2));
@@ -278,6 +287,7 @@ public class GarageAppGUI {
         contentPanel.repaint();
     }
 
+    //MODIFIES: this
     // EFFECTS: Call JsonWriter to save the data
     private void saveCollectionToFile() {
         JFileChooser fileChooser = new JFileChooser();
@@ -314,6 +324,7 @@ public class GarageAppGUI {
     }
 
     // EFFECTS: Display a list of garages stored in the collection
+    @SuppressWarnings("methodlength")
     private void showViewGaragesPanel() {
         contentPanel.removeAll();
         JPanel panel = new JPanel(new BorderLayout());
@@ -371,6 +382,7 @@ public class GarageAppGUI {
     }
 
     // EFFECTS: Display the cars which are stored in the selected garage
+    @SuppressWarnings("methodlength")
     private void showGarageDetails(Garage garage) {
         contentPanel.removeAll();
         JPanel panel = new JPanel(new BorderLayout());
@@ -407,6 +419,7 @@ public class GarageAppGUI {
     }
 
     // EFFECTS: Display the user interface of the smart generator
+    @SuppressWarnings("methodlength")
     private void showSmartGeneratorPanel() {
         contentPanel.removeAll();
         JPanel panel = new JPanel(new BorderLayout());

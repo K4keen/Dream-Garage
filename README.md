@@ -19,3 +19,13 @@ Personally, this project interests me because I am a *car lover* dreaming of bei
 - As a user, I want to be able to generate a garage by giving the range of the price/year of the car
 - As a user, I want to be able to save my cars/garages to my collection
 - As a user, I want to be able to load my previous saved cars/garages from my collection
+
+<h3>Instructions for End User</h3>
+
+- You can add cars' information into your collection by clicking the <b>"Add car"</b> button.
+- You can view all cars in your collection by clicking the <b>"View cars"</b> button on the left side of the panel, by clicking the row which has all information of that car, you can also use the <b>"Remove selected car"</b> button at the bottom of the panel to remove the car.
+- You can view all garages in your collection by clicking the <b>"View garages"</b> button on the left side of the panel, by clicking the row which has all information of that garage, you can click the <b>"View selected garage"</b> to check all cars contained in that garage.You can also use the <b>"Remove selected garage"</b> button at the bottom of the panel to remove the garage.
+- You can use the smart garage generator by clicking the <b>"Smart Generator"</b> button on the left side of the panel, by clicking the row which has all information of that garage, you can generate a garage by giving the range of the price/year of the car
+- You can locate my visual component by setting up the cover picture of the panel, and as long as you save it, next time you open the software you will see it as your cover
+- You can save the state of your collection by clicking the menu button on the left head of the panel and rename and save your collection as a Json file
+- You can reload the state of your collection by clicking the menu button on the left head of the panel and choose a Json file on your computer and load it as your collection

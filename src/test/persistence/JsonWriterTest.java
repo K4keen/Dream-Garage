@@ -42,6 +42,7 @@ public class JsonWriterTest extends JsonTest {
         }
     }
 
+    @SuppressWarnings("methodlength")
     @Test
     void testWriterGeneralLibrary() {
         try {
