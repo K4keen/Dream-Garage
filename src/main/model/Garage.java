@@ -42,6 +42,8 @@ public class Garage implements Writable {
     // EFFECTS: Add a car into the garage
     public void addCar(Car car) {
         cars.add(car);
+        EventLog.getInstance()
+                .logEvent(new Event(car.getName() + " was added to garage " + getName() + "."));
     }
 
     // MODIFIES: this.cars
@@ -49,6 +51,8 @@ public class Garage implements Writable {
     public void removeCars(Garage garage) {
         cars = garage.getCars();
         cars.removeAll(cars);
+        EventLog.getInstance()
+                .logEvent(new Event(" All cars in "+ garage.getName() + " were removed "));
     }
 
     // EFFECTS: returns this garage as a JSON object

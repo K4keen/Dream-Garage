@@ -11,10 +11,11 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import model.*;
+import model.Event;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
-public class GarageAppGUI {
+public class GarageAppGUI extends JFrame{
     private JFrame frame;
     private JPanel contentPanel;
     private Collection myCollection;
@@ -28,6 +29,41 @@ public class GarageAppGUI {
         myCollection = new Collection();
         initUI();
         showCoverPanel();
+    }
+
+     // EFFECTS: set up the basic panel of the software
+     private void initUI() {
+        frame = new JFrame("Dream Garage");
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.setSize(800, 600);
+        frame.setLayout(new BorderLayout());
+    
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                printLoggedEvents(); 
+                frame.dispose(); 
+            }
+        });
+    
+        frame.setJMenuBar(createMenuBar());
+        JPanel navigationPanel = createNavigationPanel();
+        frame.add(navigationPanel, BorderLayout.WEST);
+    
+        contentPanel = new JPanel();
+        contentPanel.setLayout(new CardLayout());
+        frame.add(contentPanel, BorderLayout.CENTER);
+    
+        frame.setVisible(true);
+    }
+
+    private void printLoggedEvents() {
+        System.out.println("---------------------------------------------");
+        System.out.println("Events logged during this session:");
+        for (Event event : EventLog.getInstance()) {
+            System.out.println(event);
+            System.out.println("---------------------------------------------");
+        }
     }
 
     
@@ -125,26 +161,6 @@ public class GarageAppGUI {
     }
     
 
-    // EFFECTS: set up the basic panel of the software
-    private void initUI() {
-
-        frame = new JFrame("Dream Garage");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
-        frame.setLayout(new BorderLayout());
-
-        frame.setJMenuBar(createMenuBar());
-
-        JPanel navigationPanel = createNavigationPanel();
-        frame.add(navigationPanel, BorderLayout.WEST);
-
-        contentPanel = new JPanel();
-        contentPanel.setLayout(new CardLayout());
-        frame.add(contentPanel, BorderLayout.CENTER);
-
-        frame.setVisible(true);
-    }
-
     //MODIFIES: this
     // EFFECTS: create a menu bar for saving and loading function
     private JMenuBar createMenuBar() {
@@ -219,7 +235,8 @@ public class GarageAppGUI {
                 int selectedRow = table.getSelectedRow();
                 if (selectedRow >= 0) {
                     Car selectedCar = cars.get(selectedRow);
-                    myCollection.getCars().remove(selectedCar);
+                    String carId = selectedCar.getId();
+                    myCollection.removeCar(cars,carId);
                     JOptionPane.showMessageDialog(frame, selectedCar.getName() + " removed!");
                     showViewCarsPanel();
                 } else {
@@ -363,7 +380,8 @@ public class GarageAppGUI {
                 int selectedRow = table.getSelectedRow();
                 if (selectedRow >= 0) {
                     Garage selectedGarage = garages.get(selectedRow);
-                    myCollection.getSavedGarages().remove(selectedGarage);
+                    String garageName = selectedGarage.getName();
+                    myCollection.removeGarage(myCollection, garageName);
                     JOptionPane.showMessageDialog(frame, selectedGarage.getName() + " removed!");
                     showViewGaragesPanel();
                 } else {

@@ -29,3 +29,15 @@ Personally, this project interests me because I am a *car lover* dreaming of bei
 - You can locate my visual component by setting up the cover picture of the panel, and as long as you save it, next time you open the software you will see it as your cover
 - You can save the state of your collection by clicking the menu button on the left head of the panel and rename and save your collection as a Json file
 - You can reload the state of your collection by clicking the menu button on the left head of the panel and choose a Json file on your computer and load it as your collection
+
+
+<h3>Phase 4: Task 2</h3>
+
+"---------------------------------------------"  
+Events logged during this session:  
+Tue Nov 26 10:21:48 PST 2024. 
+1 was added to the collection    
+"---------------------------------------------"  
+Tue Nov 26 10:21:51 PST 2024. 
+1 was removed from the collection   
+"---------------------------------------------"  

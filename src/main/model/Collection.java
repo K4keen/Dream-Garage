@@ -36,6 +36,8 @@ public class Collection implements Writable {
     // added successfully
     public void addCar(Car car) {
         cars.add(car);
+        EventLog.getInstance()
+                .logEvent(new Event(car.getName() + " was added to the collection "));
     }
 
     // MODIFIES: this.cars
@@ -46,6 +48,8 @@ public class Collection implements Writable {
         for (int i = size - 1; i >= 0; i--) {
             Car item = cars.get(i);
             if (id.equals(item.getId())) {
+                EventLog.getInstance()
+                .logEvent(new Event(item.getName() + " was removed from the collection "));
                 cars.remove(item);
             }
         }
@@ -53,10 +57,11 @@ public class Collection implements Writable {
     }
 
     // MODIFIES: this.garage
-    // EFFECTS: Add a garage to the collection and return a message if the car was
-    // added successfully
+    // EFFECTS: Add a garage to the collection 
     public void addGarage(Garage garage) {
         savedGarages.add(garage);
+        EventLog.getInstance()
+                .logEvent(new Event(garage.getName() + " was added to the collection "));
     }
 
     // MODIFIES: this.collection
@@ -71,6 +76,8 @@ public class Collection implements Writable {
         for (int i = size - 1; i >= 0; i--) {
             Garage item = garages.get(i);
             if (garage.equals(item.getName())) {
+                EventLog.getInstance()
+                .logEvent(new Event(item.getName() + " was removed from the collection "));
                 garages.remove(item);
             }
         }
