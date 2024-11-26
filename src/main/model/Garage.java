@@ -52,7 +52,7 @@ public class Garage implements Writable {
         cars = garage.getCars();
         cars.removeAll(cars);
         EventLog.getInstance()
-                .logEvent(new Event(" All cars in "+ garage.getName() + " were removed "));
+                .logEvent(new Event(" All cars in " + garage.getName() + " were removed "));
     }
 
     // EFFECTS: returns this garage as a JSON object

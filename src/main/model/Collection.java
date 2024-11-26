@@ -49,7 +49,7 @@ public class Collection implements Writable {
             Car item = cars.get(i);
             if (id.equals(item.getId())) {
                 EventLog.getInstance()
-                .logEvent(new Event(item.getName() + " was removed from the collection "));
+                        .logEvent(new Event(item.getName() + " was removed from the collection "));
                 cars.remove(item);
             }
         }
@@ -57,7 +57,7 @@ public class Collection implements Writable {
     }
 
     // MODIFIES: this.garage
-    // EFFECTS: Add a garage to the collection 
+    // EFFECTS: Add a garage to the collection
     public void addGarage(Garage garage) {
         savedGarages.add(garage);
         EventLog.getInstance()
@@ -77,7 +77,7 @@ public class Collection implements Writable {
             Garage item = garages.get(i);
             if (garage.equals(item.getName())) {
                 EventLog.getInstance()
-                .logEvent(new Event(item.getName() + " was removed from the collection "));
+                        .logEvent(new Event(item.getName() + " was removed from the collection "));
                 garages.remove(item);
             }
         }

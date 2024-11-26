@@ -15,7 +15,7 @@ import model.Event;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
-public class GarageAppGUI extends JFrame{
+public class GarageAppGUI extends JFrame {
     private JFrame frame;
     private JPanel contentPanel;
     private Collection myCollection;
@@ -31,29 +31,29 @@ public class GarageAppGUI extends JFrame{
         showCoverPanel();
     }
 
-     // EFFECTS: set up the basic panel of the software
-     private void initUI() {
+    // EFFECTS: set up the basic panel of the software
+    private void initUI() {
         frame = new JFrame("Dream Garage");
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setSize(800, 600);
         frame.setLayout(new BorderLayout());
-    
+
         frame.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
-                printLoggedEvents(); 
-                frame.dispose(); 
+                printLoggedEvents();
+                frame.dispose();
             }
         });
-    
+
         frame.setJMenuBar(createMenuBar());
         JPanel navigationPanel = createNavigationPanel();
         frame.add(navigationPanel, BorderLayout.WEST);
-    
+
         contentPanel = new JPanel();
         contentPanel.setLayout(new CardLayout());
         frame.add(contentPanel, BorderLayout.CENTER);
-    
+
         frame.setVisible(true);
     }
 
@@ -66,42 +66,41 @@ public class GarageAppGUI extends JFrame{
         }
     }
 
-    
-    //EFFECTS: Display the panel for the cover of the software
+    // EFFECTS: Display the panel for the cover of the software
     @SuppressWarnings("methodlength")
     private void showCoverPanel() {
-        contentPanel.removeAll(); 
-        JPanel coverPanel = new JPanel(new BorderLayout()); 
-    
+        contentPanel.removeAll();
+        JPanel coverPanel = new JPanel(new BorderLayout());
+
         JLabel coverImage = new JLabel("No Cover Image Set", SwingConstants.CENTER);
         coverImage.setFont(new Font("Arial", Font.BOLD, 18));
         coverImage.setHorizontalAlignment(SwingConstants.CENTER);
         coverImage.setVerticalAlignment(SwingConstants.CENTER);
-    
+
         String savedCoverPath = loadCoverImagePath();
         if (savedCoverPath != null) {
             File imageFile = new File(savedCoverPath);
-            if (imageFile.exists()) { 
+            if (imageFile.exists()) {
                 ImageIcon icon = new ImageIcon(savedCoverPath);
                 Image scaledImage = icon.getImage().getScaledInstance(800, 500, Image.SCALE_SMOOTH);
                 coverImage.setIcon(new ImageIcon(scaledImage));
                 coverImage.setText("");
             }
         }
-    
+
         coverPanel.add(coverImage, BorderLayout.CENTER);
-    
+
         JPanel buttonPanel = new JPanel();
         JButton uploadButton = new JButton("Upload Cover Image");
         JButton startButton = new JButton("Start Application");
-    
+
         uploadButton.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
             int returnValue = fileChooser.showOpenDialog(frame);
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = fileChooser.getSelectedFile();
                 ImageIcon icon = new ImageIcon(selectedFile.getAbsolutePath());
-    
+
                 Image scaledImage = icon.getImage().getScaledInstance(800, 500, Image.SCALE_SMOOTH);
                 coverImage.setIcon(new ImageIcon(scaledImage));
                 coverImage.setText("");
@@ -109,36 +108,36 @@ public class GarageAppGUI extends JFrame{
                 saveCoverImagePath(selectedFile.getAbsolutePath());
             }
         });
-    
+
         startButton.addActionListener(e -> showMainPanel());
-    
+
         buttonPanel.add(uploadButton);
         buttonPanel.add(startButton);
-    
-        coverPanel.add(buttonPanel, BorderLayout.SOUTH); 
-    
+
+        coverPanel.add(buttonPanel, BorderLayout.SOUTH);
+
         contentPanel.add(coverPanel);
-        contentPanel.revalidate(); 
+        contentPanel.revalidate();
         contentPanel.repaint();
     }
 
-    //EFFECTS: Display the main panel of the software
+    // EFFECTS: Display the main panel of the software
     private void showMainPanel() {
         contentPanel.removeAll();
         JPanel mainPanel = new JPanel(new BorderLayout());
-    
+
         JLabel welcomeLabel = new JLabel("Welcome to Dream Garage!", SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
-    
+
         mainPanel.add(welcomeLabel, BorderLayout.CENTER);
-    
+
         contentPanel.add(mainPanel);
         contentPanel.revalidate();
         contentPanel.repaint();
     }
 
-    //MODIFIES: this
-    //EFFECTS: Save the cover image that the user set last time
+    // MODIFIES: this
+    // EFFECTS: Save the cover image that the user set last time
     private void saveCoverImagePath(String path) {
         try (PrintWriter writer = new PrintWriter("cover_config.txt")) {
             writer.println(path);
@@ -147,21 +146,20 @@ public class GarageAppGUI extends JFrame{
         }
     }
 
-    //EFFECTS: Load the cover image that the user set last time
+    // EFFECTS: Load the cover image that the user set last time
     private String loadCoverImagePath() {
         File file = new File("cover_config.txt");
         if (file.exists()) {
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                return reader.readLine(); 
+                return reader.readLine();
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(frame, "Error loading cover image: " + e.getMessage());
             }
         }
         return null;
     }
-    
 
-    //MODIFIES: this
+    // MODIFIES: this
     // EFFECTS: create a menu bar for saving and loading function
     private JMenuBar createMenuBar() {
         JMenuBar menuBar = new JMenuBar();
@@ -178,7 +176,7 @@ public class GarageAppGUI extends JFrame{
         return menuBar;
     }
 
-    //MODIFIES: this
+    // MODIFIES: this
     // EFFECTS: create navigation bars for software functionalities
     private JPanel createNavigationPanel() {
         JPanel panel = new JPanel();
@@ -200,7 +198,6 @@ public class GarageAppGUI extends JFrame{
         return panel;
     }
 
-    
     // EFFECTS: Display a table of cars on a panel
     @SuppressWarnings("methodlength")
     private void showViewCarsPanel() {
@@ -236,7 +233,7 @@ public class GarageAppGUI extends JFrame{
                 if (selectedRow >= 0) {
                     Car selectedCar = cars.get(selectedRow);
                     String carId = selectedCar.getId();
-                    myCollection.removeCar(cars,carId);
+                    myCollection.removeCar(cars, carId);
                     JOptionPane.showMessageDialog(frame, selectedCar.getName() + " removed!");
                     showViewCarsPanel();
                 } else {
@@ -253,7 +250,7 @@ public class GarageAppGUI extends JFrame{
         contentPanel.repaint();
     }
 
-    //MODIFIES: this
+    // MODIFIES: this
     // EFFECTS: Display a panel of adding cars to the collection
     @SuppressWarnings("methodlength")
     private void showAddCarPanel() {
@@ -304,7 +301,7 @@ public class GarageAppGUI extends JFrame{
         contentPanel.repaint();
     }
 
-    //MODIFIES: this
+    // MODIFIES: this
     // EFFECTS: Call JsonWriter to save the data
     private void saveCollectionToFile() {
         JFileChooser fileChooser = new JFileChooser();
