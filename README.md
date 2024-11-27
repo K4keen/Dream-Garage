@@ -32,6 +32,7 @@ Personally, this project interests me because I am a *car lover* dreaming of bei
 
 
 <h3>Phase 4: Task 2</h3>
+The sample of logging events:
 
 "---------------------------------------------"  
 Events logged during this session:  
@@ -41,3 +42,10 @@ Tue Nov 26 10:21:48 PST 2024.
 Tue Nov 26 10:21:51 PST 2024. 
 1 was removed from the collection   
 "---------------------------------------------"  
+
+<h3>Phase 4: Task3</h3>
+
+- If I had more time to refactor my project and improve my design, I would start by splitting the current GUI class into multiple subclasses before adding all the elements to the main GUI class. Currently, my GarageApp class has over 550 lines, which makes it difficult for code readers to quickly understand my design ideas. In the future I could create more interfaces or abstract classes to simplify my GUI with the right logic.
+
+- In addition, at the beginning of the semester I wasn't very familiar with the software design process and didn't know the relationship between the model and the ui, so I added a lot of functionality to the ui that should have been implemented in the model. As a result, my ui was not just involved in interactive activities with the user, and in the future I can integrate all of this functionality into the model's class to make the logic clearer.
+
