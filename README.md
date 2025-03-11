@@ -49,3 +49,4 @@ Tue Nov 26 10:21:51 PST 2024.
 
 - In addition, at the beginning of the semester I wasn't very familiar with the software design process and didn't know the relationship between the model and the ui, so I added a lot of functionality to the ui that should have been implemented in the model. As a result, my ui was not just involved in interactive activities with the user, and in the future I can integrate all of this functionality into the model's class to make the logic clearer.
 
+# Dream-Garage
